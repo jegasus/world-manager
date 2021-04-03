@@ -117,7 +117,7 @@ TODO!!!!
 
 # Changelog
 
-## 0.0.1 - Released on 2021-03-31
+## 0.0.1 - Released on 2021-04-03
 Initial release! Hooray!!!!  
 
 # Next steps / To-do list
