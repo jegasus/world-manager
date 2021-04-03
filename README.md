@@ -17,6 +17,9 @@ So **PLEASE** make backups of your World folder **BEFORE** using this tool!
 Seriously, I cannot guarantee the integrity of the Worlds you edit using this 
 tool. Back up your World before doing anything with this tool.
 
+# MEGA WARING
+DO NOT, UNDER ANY CIRCUMSTANCES, RUN THIS TOOL WHILE FOUNDRY IS RUNNING! IT WILL DESTROY YOUR WORLD!!!
+
 # Pre-requisites
 ## Python 3
 
