@@ -46,8 +46,8 @@ I personally use the version recommended by Audacity, which can be downloaded
 # Compatibility
 
 ## Operating Systems
-Currently, the tool only works on Windows. Compatibility for Linux and Mac users 
-is one of the top items on the roadmap.
+Currently, the tool has only been tested on Windows and Linux systems. 
+Compatibility for Mac users is one of the top items on the roadmap.
 
 ## Foundry
 The tool has only been tested on Worlds built for Foundry 0.7.9. If you have 
@@ -63,18 +63,24 @@ pass the main arguments to the program via command line. Here is a full example
 of how to do so. First, boot up your command prompt. Then, navigate to the folder 
 where you extracted the tool by typing the following:
 ```
-> cd /d "C:\path\to\the\tool"
+> cd "/path/to/the/tool"
 ```
-Finally, type the following (making the appropriate substitutions, of course):
+Finally, type the following (making the appropriate substitutions, of course)
+
+### __For Windows users__
 ```
-> python jwm_cli.py -u "C:\Users\jegasus\AppData\Local\FoundryVTT\Data" -w "worlds/porvenir" -c "C:\Program Files\FoundryVTT\resources\app\public" -f "C:\Program Files (x86)\Audacity\libraries\ffmpeg.exe" -d y
+> python jwm_cli.py -u "C:/Users/jegasus/AppData/Local/FoundryVTT/Data" -w "worlds/porvenir" -c "C:/Program Files/FoundryVTT/resources/app/public" -f "C:/Program Files/ffmpeg/ffmpeg.exe" -d y
+```
+### __For Linux users__
+```
+> python jwm_cli.py -u "/home/jegasus/foundrydata/Data" -w "worlds/porvenir" -c "/home/jegasus/foundryvtt/resources/app/public" -f "/usr/bin/ffmpeg" -d y
 ```
 The main flags above are explained below:
 
-- `-u` or `--user-data-folder`: Foundry User Data folder. Ex: "C:\Users\jegasus\AppData\Local\FoundryVTT\Data"
-- `-w` or `--world-folder`: Foundry World folder. Ex: "worlds\kobold-cauldron", "worlds\porvenir"
-- `-c` or `--core-data-folder`: Foundry Core folder. Ex: "C:\Program Files\FoundryVTT\resources\app\public"
-- `-f` or `--ffmpeg-location`: Location of the FFMPEG application/executable. Ex: "C:\Program Files (x86)\Audacity\libraries\ffmpeg.exe
+- `-u` or `--user-data-folder`: Foundry User Data folder. Ex: "C:/Users/jegasus/AppData/Local/FoundryVTT/Data" or "/home/jegasus/foundrydata/Data"
+- `-w` or `--world-folder`: Foundry World folder. Ex: "worlds/kobold-cauldron", "worlds/porvenir"
+- `-c` or `--core-data-folder`: Foundry Core folder. Ex: "C:/Program Files/FoundryVTT/resources/app/public" or "/home/jegasus/foundryvtt/resources/app/public"
+- `-f` or `--ffmpeg-location`: Location of the FFMPEG application/executable. Ex: "C:/Program Files/ffmpeg/ffmpeg.exe" or "/usr/bin/ffmpeg"
 - `-d` or `--delete-unreferenced-images`: Flag that determines whether or not to delete unreferenced images. Should be "y" or "n".
 
 When making the appropriate substitutions, make sure you point to the correct 
@@ -122,9 +128,12 @@ TODO!!!!
 ## 0.0.1 - Released on 2021-04-03
 Initial release! Hooray!!!!  
 
+## 0.0.0 - Project kick-off on 2021-01-26
+Started working on the tool.
+
 # Next steps / To-do list
 - I need to ensure the process is cross-platform friendly. 
-Currently, only windows is supported.
+Currently, only windows & linux are supported.
   - I need to generalize the call to FFMPEG subprocess so that the tool can be used
    on Windows, Mac and Linux. 
    Look into [this question/answer](https://stackoverflow.com/questions/377017/test-if-executable-exists-in-python) and 
