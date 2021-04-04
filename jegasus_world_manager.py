@@ -695,7 +695,8 @@ class world_refs:
         # Set of images that need to be moved to the trash
         self.trash_queue = set()
         
-        
+        # Finds all the `img_ref` objects inthe world
+        self.find_all_img_references_in_world()
     
     def load_db_and_json_files(self):
         '''
@@ -1688,7 +1689,7 @@ def one_liner_compress_world(user_data_folder=None, world_folder=None,core_data_
     my_world_refs = world_refs(user_data_folder_checked,world_folder_checked,
                                core_data_folder_checked,ffmpeg_location_checked)
 
-    my_world_refs.find_all_img_references_in_world()
+    #my_world_refs.find_all_img_references_in_world()
     my_world_refs.try_to_fix_all_broken_refs()
     my_world_refs.fix_incorrect_file_extensions()
     my_world_refs.fix_all_sets_of_duplicated_images()

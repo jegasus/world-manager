@@ -101,15 +101,14 @@ user_data_folder = r'C:\Users\jegasus\AppData\Local\FoundryVTT\Data'
 world_folder = r'worlds\porvenir'
 core_data_folder = r'C:\Program Files\FoundryVTT\resources\app\public'
 ffmpeg_location = r'C:\Program Files (x86)\Audacity\libraries\ffmpeg.exe'
-delete_unreferenced_images = 'n'
 
-# Running the tool to compress the world
-my_world_refs = jwm.one_liner_compress_world(
+# Creating an instance of the `world_ref` object, which you can 
+# use however you want
+my_world_refs = jwm.world_refs(
   user_data_folder=user_data_folder,
   world_folder=world_folder,
   core_data_folder=core_data_folder,
-  ffmpeg_location=ffmpeg_location, 
-  delete_unreferenced_images=delete_unreferenced_images)
+  ffmpeg_location=ffmpeg_location)
 
 ```
 For an explanation of what the main arguments above represent, just look at the previous section.
