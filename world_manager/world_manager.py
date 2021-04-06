@@ -1701,13 +1701,3 @@ def one_liner_compress_world(user_data_folder=None, world_folder=None,core_data_
     my_world_refs.empty_trash(delete_unreferenced_images_checked)
 
     return my_world_refs
-
-
-
-
-
-
-
-
-
-
