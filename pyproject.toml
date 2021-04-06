@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "world-manager"
+version = "0.0.1"
+description = ""
+authors = ["jegasus"]
+
+[tool.poetry.scripts]
+jwm = "world_manager.cli:cli"
+
+[tool.poe.tasks]
+test = "pytest --cov=world_manager -v"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+beautifulsoup4 = "^4.9.3"
+
+[tool.poetry.dev-dependencies]
+poethepoet = "^0.10.0"
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
