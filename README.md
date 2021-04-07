@@ -125,6 +125,9 @@ TODO!!!!
 
 # Changelog
 
+## 0.0.2 - Released on 2021-04-06
+Fixed bug with the `fix_incorrect_file_extensions` function. Instead of using forward slashes, the function was using double backslashes and creating broken links. Now all files fixed through this process use exclusively forward slashes. 
+
 ## 0.0.1 - Released on 2021-04-03
 Initial release! Hooray!!!!  
 
@@ -154,4 +157,8 @@ file extension vs encoding):
   - https://pypi.org/project/filetype/
   - https://pypi.org/project/puremagic/
 - Convert all `os.path.join` statements to use the newer `Pathlib` library. 
+- Add functionality to convert video and audio files
+- Add functionality to mass-download web-based image references (can to be based on the `img_ref.img_ref_external_web_link` attribute).
 
+# Known bugs/issues
+- The World Manager does not investigate the `settings.db` file, which usually contains information about images set by modules such as Wild Tokens. Because images set by modules will not be "discovered" by the tool's search procedure, these images will therefore be considered as `unused images` and be moved to the `_trash` folder. 

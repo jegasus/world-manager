@@ -934,10 +934,18 @@ class world_refs:
                 old_img_path_for_ref = temp_ref.img_path_for_ref
                 
                 new_extension = temp_ref.img_encoding
-                new_img_path_for_ref = os.path.join(pathlib.Path(old_img_path_for_ref).parent,pathlib.Path(old_img_path_for_ref).stem) + '.' + new_extension
-                new_content = old_content.replace(old_img_path_for_ref,new_img_path_for_ref)
                 
-                os.rename(old_img_path_for_ref,new_img_path_for_ref)
+                new_img_file_path_before_extension = os.path.join(pathlib.Path(old_img_path_for_ref).parent,
+                                                                  pathlib.Path(old_img_path_for_ref).stem)
+                
+                new_img_path_for_ref = find_filename_that_doesnt_exist_yet(new_img_file_path_before_extension, 
+                                                                           new_extension).replace('\\','/')
+                
+                new_content = old_content.replace(old_img_path_for_ref,
+                                                  new_img_path_for_ref)
+                
+                #os.rename(old_img_path_for_ref,new_img_path_for_ref)
+                shutil.copyfile(old_img_path_for_ref,new_img_path_for_ref)
                 
                 # After the file on disk was fixed, all the `img_ref`s that 
                 # pointed to the old image need to be updated
@@ -1637,6 +1645,52 @@ def input_checker(user_data_folder=None, world_folder=None,
     
     return checked_inputs
 
+def find_filename_that_doesnt_exist_yet(file_path_before_extension, extension):
+    '''
+    Function that recursively checks if a specific filename exists or not. The 
+    function keeps tacking on underscore characters ("_") until it finds a name
+    of a file that doesn't yet exist on disk. 
+    
+    INPUTS:
+    -------
+    file_path_before_extension (STR) : String of the image file path up until 
+    (and excluding) the file extension. For example, for the file located at 
+    "worlds/porvenir/art/wood-bg.jpg", the `file_path_before_extension` argument
+    would be "worlds/porvenir/art/wood-bg".
+    
+    extension (STR) : String of just the file extension (without the period/dot).
+    For example, for the file located at "worlds/porvenir/art/wood-bg.jpg", the 
+    `extension` would be "jpg". 
+    
+    RETURNS:
+    --------
+    current_filename (STR) : String of the filename that doesn't yet exist on disk.
+    For example, if we call this function for the file located at 
+    "worlds/porvenir/art/wood-bg.jpg" and that file does exist, but the file 
+    "worlds/porvenir/art/wood-bg_.jpg" does not, the function will return 
+    "worlds/porvenir/art/wood-bg_.jpg".
+    
+    EXAMPLE:
+    --------
+    # Suppose "worlds/porvenir/art/wood-bg.jpg" exists on disk, but 
+    # "worlds/porvenir/art/wood-bg_.jpg" does not.
+    
+    # Input: 
+    new_filename = find_filename_that_doesnt_exist_yet(
+            "worlds/porvenir/art/wood-bg","jpg")
+    print(new_filename)
+    
+    # Output:
+    # "worlds/porvenir/art/wood-bg_.jpg"
+    '''
+    current_filename = file_path_before_extension + '.' + extension
+    
+    if os.path.isfile(current_filename):
+        # Recursive call in case the current filename is found on disk
+        return find_filename_that_doesnt_exist_yet(file_path_before_extension+'_', extension)
+    else:
+        # If the current filename points to a non-existing file, we're done!
+        return current_filename
 
 # Function that does all that is needed for world compression in one single command
 def one_liner_compress_world(user_data_folder=None, world_folder=None,core_data_folder=None,
