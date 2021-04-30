@@ -162,3 +162,4 @@ file extension vs encoding):
 
 # Known bugs/issues
 - The World Manager does not investigate the `settings.db` file, which usually contains information about images set by modules such as Wild Tokens. Because images set by modules will not be "discovered" by the tool's search procedure, these images will therefore be considered as `unused images` and be moved to the `_trash` folder. 
+- If a folder contains two files with the same base filenames but different extensions (ex: `worlds\myworld\image.png` and `worlds\myworld\image.jpeg`) and both are supposed to be truly different images, the `World Manager` will just bulldoze right through the two images and overwrite one of them.
